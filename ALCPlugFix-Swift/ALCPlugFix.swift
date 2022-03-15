@@ -19,6 +19,7 @@ class ALCPlugFix {
 
     func start(_ provider: String = "ALCUserClientProvider") {
         // Connect to provider
+        // 连接到提供商
         io_service = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching(provider))
         guard io_service != 0 else {
             print("Provider \(provider) not available!")
@@ -26,15 +27,19 @@ class ALCPlugFix {
         }
 
         // If there are verbs to be sent on boot, now is the time
+        // 如果有动词要在启动时发送，现在是时候了
         processOnBootVerbs()
 
         // Declare ourselves as the delegate and listen
+        // 宣布自己为代表并倾听
         listener.delegate = self
         listener.listen()
 
-        // Register ourselves as sleep and wake observer
+        // Register ourselves as sleep、wake and shutdown observer
+        //  将自己注册为睡眠和唤醒观察者
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(handleSleep(_:)), name: NSWorkspace.willSleepNotification, object: nil)
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(handleWake(_:)), name: NSWorkspace.didWakeNotification, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(handleShutdown(_:)), name: NSWorkspace.willPowerOffNotification, object: nil)
     }
 
     private func processOnBootVerbs() {
@@ -79,6 +84,15 @@ class ALCPlugFix {
 
         hdaVerbs.filter {
             $0.onWake && $0.enabled
+        }.forEach {
+            sendHDAVerb($0)
+        }
+    }
+    @objc private func handleShutdown(_ notification: NSNotification) {
+        print("ALCPlugFix::machineDidPowerOff")
+
+        hdaVerbs.filter {
+            $0.onShutdown && $0.enabled
         }.forEach {
             sendHDAVerb($0)
         }

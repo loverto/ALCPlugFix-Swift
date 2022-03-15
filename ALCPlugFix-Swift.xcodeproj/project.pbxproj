@@ -43,6 +43,7 @@
 		01B1AD292537112F009C072C /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
 		01B1AD3225372242009C072C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		01C9D9C3253EFF5200E475B0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FE52A63A5BC8F1A72B0A3AE5 /* uninstall.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = uninstall.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +64,7 @@
 				01A752DB2537694300A7A109 /* com.black-dragon74.ALCPlugFix.plist */,
 				01A752DA2537680E00A7A109 /* sample.plist */,
 				01A752D125374D1700A7A109 /* install.sh */,
+				FE52A63A5BC8F1A72B0A3AE5 /* uninstall.sh */,
 			);
 			path = Misc;
 			sourceTree = "<group>";

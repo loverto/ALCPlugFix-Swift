@@ -3,6 +3,9 @@ build/
 DerivedData
 build.xcarchive
 
+## AppCode 编码
+.idea/
+
 ## macOS Specific
 .DS_Store
 

@@ -35,6 +35,7 @@ private func lockAndLoad() {
     }
 
     // Either the program will keep running or exit, if not, invalid args, print help
+    // 程序将继续运行或退出，如果不是，无效参数，打印帮助
     printHelp()
 }
 

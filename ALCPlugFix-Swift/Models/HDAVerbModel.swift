@@ -8,18 +8,19 @@
 import Foundation
 
 struct HDAVerbModel: Codable, Equatable {
-    let enabled: Bool               // Whether the command is supposed to be executed or not, overrides all conditions
-    let comment: String?            // Human readable description of the command
-    let nodeID: String              // Node id of the codec
+    let enabled: Bool               // 该命令是否应该被执行，覆盖所有条件
+    let comment: String?            // 人类可读的命令描述
+    let nodeID: String              // 编解码器的节点 ID
     let verb: String                // Verb selector (see hdaverb.h)
     let param: String               // The command for the node
-    let onBoot: Bool                // Send verb on boot (at lauchd load actually)
-    let onWake: Bool                // Send verb when machine wakes from sleep
-    let onSleep: Bool               // Send verb when machine goes to sleep
-    let onConnect: Bool             // Send verb on headphone plug in
-    let onDisconnect: Bool          // Send verb on headphone plug out
-    let onMute: Bool                // Send verb on source mute
-    let onUnmute: Bool              // Send verb on source unmute
+    let onBoot: Bool                // 在启动时发送动词（实际上是在 lauchd 加载时）
+    let onShutdown: Bool            // 在关机时发送动词（实际上是在 lauchd 加载时）
+    let onWake: Bool                // 当机器从睡眠中唤醒时发送动词
+    let onSleep: Bool               // 机器进入睡眠状态时发送动词
+    let onConnect: Bool             // 在耳机插头上发送动词
+    let onDisconnect: Bool          // 在耳机插头上发送动词
+    let onMute: Bool                // 在源静音上发送动词
+    let onUnmute: Bool              // 在源上发送动词取消静音
 
     // For easy decoding
     enum CodingKeys: String, CodingKey {
@@ -29,6 +30,7 @@ struct HDAVerbModel: Codable, Equatable {
         case verb = "Verb"
         case param = "Param"
         case onBoot = "On Boot"
+        case onShutdown = "On Shutdown"
         case onWake = "On Wake"
         case onSleep = "On Sleep"
         case onConnect = "On Connect"

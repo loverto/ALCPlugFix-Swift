@@ -23,6 +23,8 @@
 		<false/>
 		<key>On Wake</key>
 		<false/>
+		<key>On Shutdown</key>
+		<false/>
 		<key>Param</key>
 		<string>0x24</string>
 		<key>Verb</key>
